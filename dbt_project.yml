@@ -24,13 +24,12 @@ models:
 
   DBT_Demo:
     datamarts:
-      koen:
-        +database: "KENNISWEEKEND_DBT"
+      +database: "KENNISWEEKEND_DBT"
 
-        dim:
-          +schema: DIM
-          +materialized: table
-        fct:
-          +schema: FCT
-          +materialized: table
+      dim:
+        +schema: DIM
+        +materialized: table
+      fct:
+        +schema: FCT
+        +materialized: table
           

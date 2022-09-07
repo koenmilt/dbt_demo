@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: snowflake_sample
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
+    tables:
+      - name: CUSTOMER
+      - name: LINEITEM
+      - name: NATION
+      - name: REGION
+      - name: ORDERS
+      - name: SUPPLIER
+      - name: PART
+      - name: PARTSUPP
+
+  - name: joblog_stg
+    database: KENNISWEEKEND_DBT
+    schema: STG
+    tables:
+      - name: JOBLOG
