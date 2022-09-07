@@ -1,3 +1,5 @@
+{{ config(alias='Sales' ) }}
+
 select 
   ord.O_ORDERKEY  
 , ite.L_LINENUMBER
