@@ -1,4 +1,9 @@
-{{ config( alias='Supplier') }}
+{{ config( alias='Supplier'
+           ,materialized='incremental' 
+           ,unique_key='SUPPLIER_ID'
+        ) 
+}}
+
 
 SELECT 
     sup.S_SUPPKEY           AS SUPPLIER_ID
@@ -10,3 +15,7 @@ SELECT
 FROM {{ source( 'snowflake_sample', 'SUPPLIER' ) }} sup
 LEFT JOIN {{ source( 'snowflake_sample', 'NATION' ) }} nat ON nat.N_NATIONKEY = sup.s_NATIONKEY
 LEFT JOIN {{ source( 'snowflake_sample', 'REGION' ) }} reg ON reg.R_REGIONKEY = nat.N_REGIONKEY
+
+{% if is_incremental() %}
+    where SUPPLIER_ID not in (select SUPPLIER_ID from {{this}} )
+{% endif %}	
